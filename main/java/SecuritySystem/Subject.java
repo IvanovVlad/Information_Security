@@ -12,6 +12,14 @@ public class Subject {
     }
 
     @Override
+    public String toString() {
+        return "Subject{" +
+                "name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o == this) {
             return true;
@@ -21,7 +29,7 @@ public class Subject {
         }
 
         Subject s = (Subject) o;
-        return this.name == s.name && this.password == s.password;
+        return this.name.equals(s.name) && this.password.equals(s.password);
     }
 
     @Override

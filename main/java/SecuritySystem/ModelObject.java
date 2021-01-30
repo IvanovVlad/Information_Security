@@ -21,11 +21,19 @@ public class ModelObject {
         }
 
         ModelObject s = (ModelObject) o;
-        return this.id == s.id && this.path == s.path;
+        return (this.id == s.id) && this.path.equals(s.path);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(id, path);
+    }
+
+    @Override
+    public String toString() {
+        return "ModelObject{" +
+                "id=" + id +
+                ", path='" + path + '\'' +
+                '}';
     }
 }
