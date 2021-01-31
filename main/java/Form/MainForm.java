@@ -15,6 +15,17 @@ public class MainForm {
     private JTextField textFieldName;
     private JTextField textFieldPassword;
     private JList listOfFiles;
+    private JButton buttonOpen;
+    private JButton buttonCopy;
+    private JButton buttonCreate;
+    private JButton buttonDelete;
+    private JTextField textField1;
+    private JTextField textField2;
+    private JTextField textField3;
+    private JTextField textField4;
+    private JTextField textField5;
+    private JTextField textField7;
+    private JLabel labelSelected;
 
     public MainForm(List<Subject> subjects, List<ModelObject> objects) { //, SecurityMatrix matrix, SecurityLevelGrid grid) {
         Authorization auth = new Authorization();
@@ -37,7 +48,7 @@ public class MainForm {
         listOfFiles.setModel(listModel);
 
         JFrame frame = new JFrame("App");
-        frame.setSize(640,480);
+        frame.setSize(1024,480);
         // frame.pack();
         frame.setContentPane(panelMain);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
