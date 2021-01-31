@@ -1,16 +1,23 @@
 package FileManager;
 
-import SecuritySystem.ModelObject;
-import SecuritySystem.Subject;
+public class FileManager implements IFileManager {
+    public boolean openCatalog () {
+        return false;
+    }
 
-public class FileManager {
-//    public void ReadFile(Subject s, ModelObject o) {
-//        if (CheckPrivilage(s, o)){
-//            System.out.println("прочитал");
-//        }
-//    }
-//
-//    private boolean CheckPrivilage(Subject s, ModelObject o) {
-//
-//    }
+    @Override
+    public boolean createFile() {
+        return false;
+    }
+
+    @Override
+    public boolean deleteFile() {
+        return false;
+    }
+
+    @Override
+    public FileObject copyFile(FileObject file, String newPath) {
+        FileObject copy = new FileObject(file.id+1,newPath, file.type, file.catalog_id, file.name);
+        return copy;
+    }
 }

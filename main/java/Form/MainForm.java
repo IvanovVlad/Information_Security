@@ -1,6 +1,7 @@
 package Form;
 
 import Authorization.Authorization;
+import FileManager.FileManager;
 import SecuritySystem.ModelObject;
 import SecuritySystem.Subject;
 
@@ -14,7 +15,7 @@ public class MainForm {
     private JPanel loginPanel;
     private JTextField textFieldName;
     private JTextField textFieldPassword;
-    private JList listOfFiles;
+    private JList<ModelObject> listOfFiles;
     private JButton buttonOpen;
     private JButton buttonCopy;
     private JButton buttonCreate;
@@ -27,7 +28,9 @@ public class MainForm {
     private JTextField textField7;
     private JLabel labelSelected;
 
-    public MainForm(List<Subject> subjects, List<ModelObject> objects) { //, SecurityMatrix matrix, SecurityLevelGrid grid) {
+    public MainForm(List<Subject> subjects, List<ModelObject> objects) {
+        FileManager fm = new FileManager();
+        
         Authorization auth = new Authorization();
 
         loginButton.addActionListener(e->{

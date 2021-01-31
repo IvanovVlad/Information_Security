@@ -1,3 +1,5 @@
+package FileManager;
+
 import SecuritySystem.ModelObject;
 
 public class FileObject extends ModelObject {
