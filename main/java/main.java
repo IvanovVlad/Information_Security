@@ -21,12 +21,12 @@ public class main {
         subjects.add(s5);
         subjects.add(s6);
 
-        ModelObject o1 = new ModelObject(0, "C://");
-        ModelObject o2 = new ModelObject(1, "D://");
-        ModelObject o3 = new ModelObject(2, "D://");
-        ModelObject o4 = new ModelObject(3, "D://");
-        ModelObject o5 = new ModelObject(4, "D://");
-        ModelObject o6 = new ModelObject(5, "D://");
+        ModelObject o1 = new Catalog(0, "C://", "1");
+        ModelObject o2 = new Catalog(1, "D://", "2");
+        ModelObject o3 = new FileObject(2, "D://", "txt",0, "document");
+        ModelObject o4 = new FileObject(3, "D://", "png",0, "picture1");
+        ModelObject o5 = new FileObject(4, "D://", "jpg",0, "picture2");
+        ModelObject o6 = new FileObject(5, "D://", "exe",0, "executable");
 
         List<ModelObject> objects = new ArrayList<>();
         objects.add(o1);
@@ -97,9 +97,9 @@ public class main {
 //        System.out.println(grid.checkPrivilege(s4, o4)); // same
 //        System.out.println(grid.checkPrivilege(s4, o3)); // lower privilege
 
-//        if (grid.checkPrivilege(s4, o3)) {
-//            System.out.println(matrix.getAccessModifiers(s4, o3));
-//        }
+        if (grid.checkPrivilege(s4, o3)) {
+            System.out.println(matrix.getAccessModifiers(s4, o3));
+        }
 
         // формочка
         MainForm form = new MainForm(subjects, objects);
