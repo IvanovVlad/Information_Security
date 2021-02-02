@@ -3,9 +3,13 @@ package FileManager;
 import SecuritySystem.AccessModifier;
 import SecuritySystem.Subject;
 
+
 public interface IFileManager {
-    // public boolean openCatalog(Subject s, Catalog c, AccessModifier am);
-    public boolean createFile();
-    public boolean deleteFile();
-    public FileObjectFM copyFile(FileObjectFM file, String newPath);
+    public void openFile(Subject s, FileObjectFM file, AccessModifier am);
+
+    void deleteFile(Subject s, FileObjectFM file, AccessModifier am);
+
+    void copyFile(Subject s, FileObjectFM o, Catalog c);
+
+    void createFile(Subject s, Catalog c, FileObjectFM o);
 }

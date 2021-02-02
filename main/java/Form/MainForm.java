@@ -32,30 +32,15 @@ public class MainForm {
     private JComboBox comboBoxCreate;
 
     private Checker checker;
-    private DefaultListModel<FileObjectFM> DLMFiles;
-    private List<Catalog> catalogs;
-
     private List<Subject> allSubjects;
-    private List<FileObjectFM> allFiles;
+    private static FileManager fm;
 
     public MainForm(List<Subject> subjects, List<ModelObject> objects, SecurityLevelGrid slg, SecurityMatrix sm) {
         allSubjects = subjects;
-
         checker = new Checker(slg, sm);
+        fm = new FileManager(objects, checker);
 
-        DLMFiles = new DefaultListModel<>();
-        listOfFiles.setModel(DLMFiles);
-
-        catalogs = new ArrayList<>();
-        allFiles = new ArrayList<>();
-
-        for (ModelObject o : objects) {
-            if (o.getClass().getName() == "FileManager.Catalog") {
-                catalogs.add((Catalog) o);
-            } else {
-                allFiles.add((FileObjectFM) o);
-            }
-        }
+        listOfFiles.setModel(fm.DLMFiles);
 
         refreshCombo();
         setUpLogin(subjects);
@@ -66,15 +51,15 @@ public class MainForm {
         });
 
         buttonOpen.addActionListener(e -> {
-            openFile(Authorization.CURRENT_USER, listOfFiles.getSelectedValue(), AccessModifier.Read);
+            fm.openFile(Authorization.CURRENT_USER, listOfFiles.getSelectedValue(), AccessModifier.Read);
         });
 
         buttonDelete.addActionListener(e -> {
-            deleteFile(Authorization.CURRENT_USER, listOfFiles.getSelectedValue(), AccessModifier.Delete);
+            fm.deleteFile(Authorization.CURRENT_USER, listOfFiles.getSelectedValue(), AccessModifier.Delete);
         });
 
         buttonCopy.addActionListener(e -> {
-            copyFile(Authorization.CURRENT_USER, listOfFiles.getSelectedValue(), (Catalog) comboBoxCopy.getSelectedItem());
+            fm.copyFile(Authorization.CURRENT_USER, listOfFiles.getSelectedValue(), (Catalog) comboBoxCopy.getSelectedItem());
         });
 
         buttonCreate.addActionListener(e -> {
@@ -86,7 +71,7 @@ public class MainForm {
                     targetCatalog.id,
                     textField3.getText()
             );
-            createFile(Authorization.CURRENT_USER, targetCatalog, file);
+            fm.createFile(Authorization.CURRENT_USER, targetCatalog, file);
         });
 
         setUpForm();
@@ -96,7 +81,7 @@ public class MainForm {
         comboBoxDirectory.setSelectedItem(null);
         comboBoxDirectory.addActionListener(e -> {
             Catalog selected = (Catalog) comboBoxDirectory.getSelectedItem();
-            showFilesFromCatalog(Authorization.CURRENT_USER, selected);
+            fm.showFilesFromCatalog(Authorization.CURRENT_USER, selected);
         });
     }
 
@@ -118,8 +103,7 @@ public class MainForm {
 
     void setUpForm() {
         JFrame frame = new JFrame("App");
-        frame.setSize(1024, 480);
-        // frame.pack();
+        frame.setSize(1280, 480);
         frame.setContentPane(panelMain);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
@@ -130,54 +114,10 @@ public class MainForm {
         comboBoxCopy.removeAllItems();
         comboBoxCreate.removeAllItems();
 
-        for (Catalog c : catalogs) {
+        for (Catalog c : fm.getCatalogs()) {
             comboBoxDirectory.addItem(c);
             comboBoxCopy.addItem(c);
             comboBoxCreate.addItem(c);
-        }
-    }
-
-    void showFilesFromCatalog(Subject s, Catalog c) {
-        if (checker.checkAction(s, c, AccessModifier.Read)) {
-            DLMFiles.clear();
-
-            for (FileObjectFM f : allFiles) {
-                if (c.id == f.catalog_id) {
-                    DLMFiles.addElement(f);
-                }
-            }
-        }
-    }
-
-    void openFile(Subject s, FileObjectFM file, AccessModifier am) {
-        if (checker.checkAction(s, file, am)) JOptionPane.showMessageDialog(null, "Открыт файл " + file);
-    }
-
-    void deleteFile(Subject s, FileObjectFM file, AccessModifier am) {
-        if (checker.checkAction(s, file, am)) {
-            DLMFiles.removeElement(file);
-            allFiles.remove(file);
-            JOptionPane.showMessageDialog(null, "Файл удален " + file);
-        }
-    }
-
-    void copyFile(Subject s, FileObjectFM o, Catalog c) {
-        if (checker.checkAction(s, o, AccessModifier.Read) &&
-                checker.checkAction(s, c, AccessModifier.Write)) {
-            FileObjectFM file = new FileObjectFM(99, c.path, o.name, c.id, o.name + "(copy)");
-            DLMFiles.addElement(file);
-            allFiles.add(file);
-            showFilesFromCatalog(s, c);
-            JOptionPane.showMessageDialog(null, "Копия создана");
-        }
-    }
-
-    void createFile(Subject s, Catalog c, FileObjectFM o) {
-        if (checker.checkAction(s, c, AccessModifier.Write)) {
-            DLMFiles.addElement(o);
-            allFiles.add(o);
-            showFilesFromCatalog(s, c);
-            JOptionPane.showMessageDialog(null, "Файл создан");
         }
     }
 }
