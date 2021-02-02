@@ -47,7 +47,12 @@ public class MainForm {
         setUpCombo();
 
         listOfFiles.addListSelectionListener(e -> {
-            // labelSelectedCopy.setText(listOfFiles.getSelectedValue().toString());
+            try{
+            String heh = listOfFiles.getSelectedValue().toString();
+            labelSelectedCopy.setText(heh);
+            } catch (Exception exception) {
+                System.out.println(exception);
+            }
         });
 
         buttonOpen.addActionListener(e -> {
@@ -103,7 +108,7 @@ public class MainForm {
 
     void setUpForm() {
         JFrame frame = new JFrame("App");
-        frame.setSize(1280, 480);
+        frame.setSize(1024, 480);
         frame.setContentPane(panelMain);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);

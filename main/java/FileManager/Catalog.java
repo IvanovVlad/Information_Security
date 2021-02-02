@@ -9,7 +9,7 @@ public class Catalog extends ModelObject {
 
     @Override
     public String toString() {
-        return "FileManager.Catalog || " +
+        return "Catalog || " +
                 "id=" + id +
                 ", path='" + path + '\'' +
                 ", name='" + name;
