@@ -12,6 +12,7 @@ public class Checker {
         this.securityMatrix = securityMatrix;
     }
 
+    // проверки nwu / nrd
     List<AccessModifier> checkPrivilege(Subject s, ModelObject o) {
         List<AccessModifier> safeActions = new ArrayList<>();
         int cmp = securityLevelGrid.getSecurityLevel(s).compareTo(securityLevelGrid.getSecurityLevel(o));
@@ -31,14 +32,19 @@ public class Checker {
         return safeActions;
     }
 
-    public String checkAction(Subject s, ModelObject o, AccessModifier requiredAction) {
+    public boolean checkAction(Subject s, ModelObject o, AccessModifier requiredAction) {
         List<AccessModifier> safeActions = checkPrivilege(s, o);
 
         for (AccessModifier am : safeActions) {
             if (am == requiredAction) {
-                return "access";
+                List<AccessModifier> availableActions = securityMatrix.getAccessModifiers(s, o);
+                for (AccessModifier ao : availableActions) {
+                    if (ao == requiredAction) {
+                        return true;
+                    }
+                }
             }
         }
-        return "deny";
+        return false;
     }
 }
