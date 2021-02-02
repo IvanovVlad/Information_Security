@@ -7,12 +7,12 @@ import java.util.List;
 
 public class main {
     public static void main(String[] args) {
-        Subject s1 = new Subject("1", "1");
-        Subject s2 = new Subject("Subject 2", "67890");
-        Subject s3 = new Subject("Subject 3", "67890");
-        Subject s4 = new Subject("Subject 4", "67890");
-        Subject s5 = new Subject("Subject 5", "67890");
-        Subject s6 = new Subject("Subject 6", "67890");
+        Subject s1 = new Subject("Subject 1", "pass");
+        Subject s2 = new Subject("Subject 2", "pass");
+        Subject s3 = new Subject("Subject 3", "pass");
+        Subject s4 = new Subject("Subject 4", "pass");
+        Subject s5 = new Subject("Subject 5", "pass");
+        Subject s6 = new Subject("Subject 6", "pass");
 
         List<Subject> subjects = new ArrayList<>();
         subjects.add(s1);
@@ -27,7 +27,7 @@ public class main {
         ModelObject o3 = new FileObject(2, "D://", "txt",0, "document");
         ModelObject o4 = new FileObject(3, "D://", "png",0, "picture1");
         ModelObject o5 = new FileObject(4, "D://", "jpg",0, "picture2");
-        ModelObject o6 = new FileObject(5, "D://", "exe",0, "executable");
+        ModelObject o6 = new FileObject(5, "D://", "exe",1, "executable");
 
         List<ModelObject> objects = new ArrayList<>();
         objects.add(o1);
@@ -98,9 +98,21 @@ public class main {
 //        System.out.println(grid.checkPrivilege(s4, o4)); // same
 //        System.out.println(grid.checkPrivilege(s4, o3)); // lower privilege
 
-        if (grid.checkPrivilege(s4, o3)) {
-            System.out.println(matrix.getAccessModifiers(s4, o3));
-        }
+
+//        if (grid.checkPrivilege(s4, o3)) {
+//            System.out.println(matrix.getAccessModifiers(s4, o3));
+//        }
+
+        Checker checker = new Checker(grid, matrix);
+
+        System.out.println(checker.checkAction(s4, o5, AccessModifier.Read));
+        System.out.println(checker.checkAction(s4, o5, AccessModifier.Write));
+        System.out.println();
+        System.out.println(checker.checkAction(s4, o4, AccessModifier.Read));
+        System.out.println(checker.checkAction(s4, o4, AccessModifier.Write));
+        System.out.println();
+        System.out.println(checker.checkAction(s4, o6, AccessModifier.Read));
+        System.out.println(checker.checkAction(s4, o6, AccessModifier.Write));
 
         // формочка
         MainForm form = new MainForm(subjects, objects);
