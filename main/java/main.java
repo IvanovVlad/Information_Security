@@ -23,12 +23,12 @@ public class main {
         subjects.add(s5);
         subjects.add(s6);
 
-        ModelObject o1 = new Catalog(0, "C://", "1");
-        ModelObject o2 = new Catalog(1, "D://", "2");
-        ModelObject o3 = new FileObjectFM(2, "D://", "txt",0, "document");
-        ModelObject o4 = new FileObjectFM(3, "D://", "png",0, "picture1");
-        ModelObject o5 = new FileObjectFM(4, "D://", "jpg",0, "picture2");
-        ModelObject o6 = new FileObjectFM(5, "D://", "exe",1, "executable");
+        ModelObject o1 = new Catalog(0, "o1", "1");
+        ModelObject o2 = new Catalog(1, "o2", "2");
+        ModelObject o3 = new FileObjectFM(2, "o3", "txt",0, "document");
+        ModelObject o4 = new FileObjectFM(3, "o4", "png",0, "picture1");
+        ModelObject o5 = new FileObjectFM(4, "o5", "jpg",0, "picture2");
+        ModelObject o6 = new FileObjectFM(5, "o6", "exe",1, "executable");
 
         List<ModelObject> objects = new ArrayList<>();
         objects.add(o1);
@@ -56,9 +56,9 @@ public class main {
         matrix.addRecord(o1, s1, AccessModifier.Read);
         matrix.addRecord(o2, s1, AccessModifier.Read);
         matrix.addRecord(o3, s1, AccessModifier.Read);
-        matrix.addRecord(o4, s1, AccessModifier.Read);
-        matrix.addRecord(o5, s1, AccessModifier.Read, AccessModifier.Write);
-        matrix.addRecord(o6, s1, AccessModifier.Read);
+        matrix.addRecord(o4, s1, AccessModifier.Read, AccessModifier.Delete);
+        matrix.addRecord(o5, s1, AccessModifier.Read, AccessModifier.Write, AccessModifier.Delete);
+        matrix.addRecord(o6, s1, AccessModifier.Read, AccessModifier.Delete);
 
         matrix.addRecord(o1, s2, AccessModifier.Read);
         matrix.addRecord(o2, s2, AccessModifier.Read);
@@ -104,19 +104,19 @@ public class main {
 //            System.out.println(matrix.getAccessModifiers(s4, o3));
 //        }
 
-        Checker checker = new Checker(grid, matrix);
+//        Checker checker = new Checker(grid, matrix);
 
-        System.out.println(checker.checkAction(s4, o5, AccessModifier.Read));
-        System.out.println(checker.checkAction(s4, o5, AccessModifier.Write));
-        System.out.println();
-        System.out.println(checker.checkAction(s4, o4, AccessModifier.Read));
-        System.out.println(checker.checkAction(s4, o4, AccessModifier.Write));
-        System.out.println();
-        System.out.println(checker.checkAction(s4, o6, AccessModifier.Read));
-        System.out.println(checker.checkAction(s4, o6, AccessModifier.Write));
+//        System.out.println(checker.checkAction(s4, o5, AccessModifier.Read));
+//        System.out.println(checker.checkAction(s4, o5, AccessModifier.Write));
+//        System.out.println();
+//        System.out.println(checker.checkAction(s4, o4, AccessModifier.Read));
+//        System.out.println(checker.checkAction(s4, o4, AccessModifier.Write));
+//        System.out.println();
+//        System.out.println(checker.checkAction(s4, o6, AccessModifier.Read));
+//        System.out.println(checker.checkAction(s4, o6, AccessModifier.Write));
 
         // формочка
-        MainForm form = new MainForm(subjects, objects);
+        MainForm form = new MainForm(subjects, objects, grid, matrix);
 
     }
 }
