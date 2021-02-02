@@ -1,3 +1,5 @@
+package FileManager;
+
 import SecuritySystem.ModelObject;
 
 public class Catalog extends ModelObject {
@@ -7,7 +9,7 @@ public class Catalog extends ModelObject {
 
     @Override
     public String toString() {
-        return "Catalog || " +
+        return "FileManager.Catalog || " +
                 "id=" + id +
                 ", path='" + path + '\'' +
                 ", name='" + name;

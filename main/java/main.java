@@ -1,4 +1,5 @@
-import FileManager.FileObject;
+import FileManager.Catalog;
+import FileManager.FileObjectFM;
 import Form.MainForm;
 import SecuritySystem.*;
 
@@ -24,10 +25,10 @@ public class main {
 
         ModelObject o1 = new Catalog(0, "C://", "1");
         ModelObject o2 = new Catalog(1, "D://", "2");
-        ModelObject o3 = new FileObject(2, "D://", "txt",0, "document");
-        ModelObject o4 = new FileObject(3, "D://", "png",0, "picture1");
-        ModelObject o5 = new FileObject(4, "D://", "jpg",0, "picture2");
-        ModelObject o6 = new FileObject(5, "D://", "exe",1, "executable");
+        ModelObject o3 = new FileObjectFM(2, "D://", "txt",0, "document");
+        ModelObject o4 = new FileObjectFM(3, "D://", "png",0, "picture1");
+        ModelObject o5 = new FileObjectFM(4, "D://", "jpg",0, "picture2");
+        ModelObject o6 = new FileObjectFM(5, "D://", "exe",1, "executable");
 
         List<ModelObject> objects = new ArrayList<>();
         objects.add(o1);
