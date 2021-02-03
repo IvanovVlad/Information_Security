@@ -3,11 +3,11 @@ package SecuritySystem;
 import java.util.Objects;
 
 public class ModelObject {
-    public int id;
+    public String id;
     public String path;
     public String name;
 
-    public ModelObject(int id, String path, String name) {
+    public ModelObject(String id, String path, String name) {
         this.id = id;
         this.path = path;
         this.name = name;

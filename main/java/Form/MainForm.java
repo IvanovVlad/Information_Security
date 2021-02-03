@@ -70,7 +70,7 @@ public class MainForm {
         buttonCreate.addActionListener(e -> {
             Catalog targetCatalog = (Catalog) comboBoxCreate.getSelectedItem();
             FileObjectFM file = new FileObjectFM(
-                    Integer.parseInt(textField1.getText()),
+                    textField1.getText(),
                     textField2.getText(),
                     textField4.getText(),
                     targetCatalog.id,

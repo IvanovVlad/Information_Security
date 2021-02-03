@@ -5,8 +5,10 @@ import java.util.Objects;
 public class Subject {
     public String name;
     public String password;
+    public String id;
 
-    public Subject(String name, String password) {
+    public Subject(String id, String name, String password) {
+        this.id = id;
         this.name = name;
         this.password = password;
     }

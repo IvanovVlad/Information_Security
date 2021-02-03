@@ -6,12 +6,8 @@ import java.util.List;
 public class SecurityMatrix {
     List<MatrixUnit> securityMatrix = new ArrayList<MatrixUnit>();
 
-    public boolean addRecord(ModelObject o, Subject s, AccessModifier ...a) {
-        List<AccessModifier> list = new ArrayList<AccessModifier>();
-        for (AccessModifier am:a) {
-            list.add(am);
-        }
-        return  securityMatrix.add(new MatrixUnit(o, s, list));
+    public boolean addRecord(ModelObject o, Subject s, List<AccessModifier> accessModifiers) {
+        return  securityMatrix.add(new MatrixUnit(o, s, accessModifiers));
     }
 
     public List<AccessModifier> getAccessModifiers(Subject s, ModelObject o) {

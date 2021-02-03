@@ -26,10 +26,5 @@ public class SecurityLevelGrid {
         if (unclassified.findSubject(s)) return AccessLevel.Unclassified;
         return null;
     }
-
-//    public boolean checkPrivilege(Subject s, ModelObject o) {
-//        int cmp = getSecurityLevel(s).compareTo(getSecurityLevel(o));
-//        return cmp <= 0;
-//    }
 }
 

@@ -4,9 +4,9 @@ import SecuritySystem.ModelObject;
 
 public class FileObjectFM extends ModelObject {
     public String type;
-    public int catalog_id;
+    public String catalog_id;
 
-    public FileObjectFM(int id, String path, String type, int catalog_id, String name) {
+    public FileObjectFM(String id, String path, String type, String catalog_id, String name) {
         super(id, path, name);
         this.type = type;
         this.catalog_id = catalog_id;

@@ -53,7 +53,7 @@ public class FileManager implements IFileManager {
     public void copyFile(Subject s, FileObjectFM o, Catalog c) {
         if (checker.checkAction(s, o, AccessModifier.Read) &&
                 checker.checkAction(s, c, AccessModifier.Write)) {
-            FileObjectFM file = new FileObjectFM(99, c.path, o.name, c.id, o.name + "(copy)");
+            FileObjectFM file = new FileObjectFM("99", c.path, o.name, c.id, o.name + "(copy)");
             DLMFiles.addElement(file);
             allFiles.add(file);
             showFilesFromCatalog(s, c);

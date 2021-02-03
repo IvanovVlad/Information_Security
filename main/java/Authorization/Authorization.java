@@ -18,6 +18,6 @@ public class Authorization {
     }
 
     public boolean login(String login, String password, List<Subject> users) {
-        return login(new Subject(login, password), users);
+        return login(new Subject("", login, password), users);
     }
 }
