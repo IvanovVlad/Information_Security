@@ -6,10 +6,10 @@ subject,s5,Subject 5,pass,,,
 subject,s6,Subject 6,pass,,,
 catalog,o1,D://,Catalog 1,,
 catalog,o2,D://,Catalog 2,,
-file,o3,D://,txt,1,document
-file,o4,D://,png,1,my_pic0
-file,o5,D://,jpg,1,my_pic1
-file,o6,D://,exe,2,my_program
+file,o3,D://,txt,o1,document
+file,o4,D://,png,o1,my_pic0
+file,o5,D://,jpg,o1,my_pic1
+file,o6,D://,exe,o2,my_program
 grid,topSecret,s1,,,
 grid,topSecret,s2,,,
 grid,secret,s3,,,

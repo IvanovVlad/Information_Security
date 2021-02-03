@@ -38,6 +38,7 @@ public class MainForm {
     public MainForm(List<Subject> subjects, List<ModelObject> objects, SecurityLevelGrid slg, SecurityMatrix sm) {
         allSubjects = subjects;
         checker = new Checker(slg, sm);
+
         fm = new FileManager(objects, checker);
 
         listOfFiles.setModel(fm.DLMFiles);

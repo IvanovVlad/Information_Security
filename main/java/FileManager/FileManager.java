@@ -10,9 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileManager implements IFileManager {
-    public List<FileObjectFM> getAllFiles() {
-        return allFiles;
-    }
+    private Checker checker;
+    private List<FileObjectFM> allFiles;
+    private List<Catalog> catalogs;
+    public DefaultListModel<FileObjectFM> DLMFiles;
+
 
     public FileManager(List<ModelObject> objects, Checker checker) {
         this.checker = checker;
@@ -29,10 +31,9 @@ public class FileManager implements IFileManager {
         }
     }
 
-    private Checker checker;
-    private List<FileObjectFM> allFiles;
-    private List<Catalog> catalogs;
-    public DefaultListModel<FileObjectFM> DLMFiles;
+    public List<FileObjectFM> getAllFiles() {
+        return allFiles;
+    }
 
     public List<Catalog> getCatalogs() {
         return catalogs;
@@ -75,7 +76,7 @@ public class FileManager implements IFileManager {
             DLMFiles.clear();
 
             for (FileObjectFM f : allFiles) {
-                if (c.id == f.catalog_id) {
+                if (c.id.equalsIgnoreCase(f.catalog_id)) {
                     DLMFiles.addElement(f);
                 }
             }

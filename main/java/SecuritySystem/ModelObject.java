@@ -23,7 +23,7 @@ public class ModelObject {
         }
 
         ModelObject s = (ModelObject) o;
-        return (this.id == s.id) && this.path.equals(s.path);
+        return (this.id.equalsIgnoreCase(s.id)) && this.path.equals(s.path);
     }
 
     @Override
