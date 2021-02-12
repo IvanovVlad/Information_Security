@@ -32,11 +32,9 @@ public class MainForm {
     private JComboBox comboBoxCreate;
 
     private Checker checker;
-    private List<Subject> allSubjects;
     private static FileManager fm;
 
     public MainForm(List<Subject> subjects, List<ModelObject> objects, SecurityLevelGrid slg, SecurityMatrix sm) {
-        allSubjects = subjects;
         checker = new Checker(slg, sm);
 
         fm = new FileManager(objects, checker);
@@ -97,10 +95,10 @@ public class MainForm {
         loginButton.addActionListener(e -> {
             if (auth.login(textFieldName.getText(), textFieldPassword.getText(), subjects)) {
                 loginButton.setBackground(Color.GREEN);
-                for (Component cp : loginPanel.getComponents()) {
-                    // сделать логин неактивным
+                // сделать логин неактивным
+                //for (Component cp : loginPanel.getComponents()) {
                     // cp.setEnabled(false);
-                }
+                //}
             } else {
                 loginButton.setBackground(Color.RED);
             }

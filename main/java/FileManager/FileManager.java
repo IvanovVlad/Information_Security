@@ -1,5 +1,6 @@
 package FileManager;
 
+import Authorization.Authorization;
 import SecuritySystem.AccessModifier;
 import SecuritySystem.Checker;
 import SecuritySystem.ModelObject;
@@ -58,6 +59,7 @@ public class FileManager implements IFileManager {
             DLMFiles.addElement(file);
             allFiles.add(file);
             showFilesFromCatalog(s, c);
+            checker.addNewFileToModel(file, Authorization.CURRENT_USER);
             JOptionPane.showMessageDialog(null, "Копия создана");
         }
     }
@@ -67,6 +69,7 @@ public class FileManager implements IFileManager {
             DLMFiles.addElement(o);
             allFiles.add(o);
             showFilesFromCatalog(s, c);
+            checker.addNewFileToModel(o, Authorization.CURRENT_USER);
             JOptionPane.showMessageDialog(null, "Файл создан");
         }
     }

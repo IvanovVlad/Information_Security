@@ -1,5 +1,7 @@
 package SecuritySystem;
 
+import FileManager.FileObjectFM;
+
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +9,25 @@ import java.util.List;
 public class Checker {
     private SecurityLevelGrid securityLevelGrid;
     private SecurityMatrix securityMatrix;
+
+    public void addNewFileToModel(FileObjectFM file, Subject s) {
+        securityMatrix.addRecord(file, s, List.of(AccessModifier.Write, AccessModifier.Read, AccessModifier.Delete));
+
+        switch (securityLevelGrid.getSecurityLevel(s)) {
+            case Secret:
+                securityLevelGrid.secret.addObject(file);
+                break;
+            case TopSecret:
+                securityLevelGrid.topSecret.addObject(file);
+                break;
+            case Confidential:
+                securityLevelGrid.confidential.addObject(file);
+                break;
+            case Unclassified:
+                securityLevelGrid.unclassified.addObject(file);
+                break;
+        }
+    }
 
     public Checker(SecurityLevelGrid securityLevelGrid, SecurityMatrix securityMatrix) {
         this.securityLevelGrid = securityLevelGrid;
